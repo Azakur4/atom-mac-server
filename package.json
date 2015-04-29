@@ -1,12 +1,12 @@
 {
   "name": "mac-server",
   "main": "./lib/mac-server",
-  "version": "0.1.0",
+  "version": "0.3.0",
   "description": "Start and stop the native mac server",
   "repository": "https://github.com/Azakur4/atom-mac-server",
   "license": "MIT",
   "engines": {
-    "atom": ">0.50.0"
+    "atom": ">0.150.0"
   },
   "consumedServices": {
     "status-bar": {
@@ -16,7 +16,7 @@
     }
   },
   "dependencies": {
-    "space-pen": "^5.0.0",
+    "atom-space-pen-views": "^2.0.3",
     "event-kit": "^1.0.3"
   }
 }
