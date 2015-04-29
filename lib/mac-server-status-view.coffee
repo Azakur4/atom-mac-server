@@ -69,6 +69,6 @@ class MacServerStatusView extends HTMLDivElement
           @serverStatus = true
           @update()
 
-    atom.views.getView(atom.workspace.getActiveTextEditor()).focus()
+    atom.views.getView(atom.workspace.getActiveTextEditor())?.focus()
 
 module.exports = document.registerElement('mac-server-status', prototype: MacServerStatusView.prototype)
