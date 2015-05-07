@@ -1,4 +1,4 @@
-{$, View} = require 'atom-space-pen-views'
+{View} = require 'atom-space-pen-views'
 {Emitter} = require 'event-kit'
 
 module.exports =
@@ -6,7 +6,7 @@ class MacServerView extends View
   @content: ->
     @div class: 'mac-server', =>
       @label 'Enter your root password'
-      @input type: 'password', class: 'mac-server-password native-key-bindings'
+      @input type: 'password', class: 'mac-server-password native-key-bindings', outlet: 'prompt'
 
   initialize: ->
     @emitter = new Emitter
@@ -16,17 +16,18 @@ class MacServerView extends View
 
     @panel.show()
 
-    $('.mac-server-password').focus()
-    $('.mac-server-password').on 'keydown', (e) =>
+    @prompt.on 'keydown', (e) =>
       if e.which is 13
-        password = $('.mac-server-password').val()
-        $('.mac-server-password').val('')
+        password = @prompt.val()
+        @prompt.val('')
         @close()
 
         @emitter.emit 'macserver-dialog', password
       else if e.which is 27
-        $('.mac-server-password').val('')
+        @prompt.val('')
         @close()
+
+    @prompt.focus()
 
   onServerDialog: (callback) ->
     @emitter.on 'macserver-dialog', callback
